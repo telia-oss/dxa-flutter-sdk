@@ -1,9 +1,9 @@
 package com.medallia.medallia_dxa
 
-import PerformanceData
-import SamplingFlutterInfo
-import SdkConfigInfo
-import SessionInfo
+import com.medallia.medallia_dxa.PerformanceData
+import com.medallia.medallia_dxa.SamplingFlutterInfo
+import com.medallia.medallia_dxa.SdkConfigInfo
+import com.medallia.medallia_dxa.SessionInfo
 import android.app.Activity
 import android.util.Log
 import com.medallia.dxa.DXA

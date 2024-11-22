@@ -1,3 +1,5 @@
+package com.medallia.medallia_dxa
+
 import com.medallia.dxa.common.enums.DeviceUnderStress
 import com.medallia.dxa.common.internal.logic.providers.AppVersionProvider
 
