@@ -1,14 +1,15 @@
 group 'com.medallia.medallia_dxa'
 
 buildscript {
-    ext.kotlin_version = '1.5.20'
+    ext.kotlin_version = '1.9.20'
     repositories {
         google()
+        mavenCentral()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:8.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -27,28 +28,41 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace "com.medallia.medallia_dxa"
     compileSdkVersion 34
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    kotlin {
+        jvmToolchain(17)
+    }
+
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 33
-        missingDimensionStrategy("dxa-platform", "flutter")
-        missingDimensionStrategy("dxa-environment", "prod")
     }
 
     lintOptions {
         disable 'InvalidPackage'
     }
-    compileOptions {
-        sourceCompatibility = 17
-        targetCompatibility = 17
-    }
 }
-
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.medallia.dxa:dxa-android-sdk:3.2.2"
+    implementation("com.medallia.dxa:dxa-android-sdk:3.2.2"){
+        attributes{
+            attribute(Attribute.of("dxa-environment", String), "prod")
+            attribute(Attribute.of("dxa-platform", String), "flutter")
+        }
+    }
 }
