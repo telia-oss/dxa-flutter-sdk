@@ -51,18 +51,16 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 33
+        missingDimensionStrategy("dxa-platform", "flutter")
+        missingDimensionStrategy("dxa-environment", "prod")
     }
 
     lintOptions {
         disable 'InvalidPackage'
     }
 }
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation("com.medallia.dxa:dxa-android-sdk:3.2.2"){
-        attributes{
-            attribute(Attribute.of("dxa-environment", String), "prod")
-            attribute(Attribute.of("dxa-platform", String), "flutter")
-        }
-    }
+    implementation "com.medallia.dxa:dxa-android-sdk:3.2.2"
 }
